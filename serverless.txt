@@ -1,0 +1,5 @@
++  functions[helloWorld(us-central1)]: Successful create operation.
+Function URL (helloWorld): https://us-central1-primeros-pasos-con-serverless.cloudfunctions.net/helloWorld
++  functions[addMessage(us-central1)]: Successful create operation.
+Function URL (addMessage): https://us-central1-primeros-pasos-con-serverless.cloudfunctions.net/addMessage
++  functions[makeUppercase(us-central1)]: Successful create operation.
