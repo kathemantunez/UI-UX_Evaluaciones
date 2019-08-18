@@ -1,0 +1,140 @@
+.button-wrapper{
+    display: flex;
+    height: 4em;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: lighter;
+    background-color: #e0e1e6;
+    color: #888;
+    outline: 1px solid #888;
+}
+
+.operator{
+    background-color: #fe9241;
+    color: #fff;
+}
+
+
+
+import React, {Component} from 'react';
+import "./App.css";
+import Button from "./components/Button";
+import Input from "./components/Input";
+import ClearButton from "./components/ClearButton";
+
+class App extends Component{
+  constructor(props){
+    super(props);
+
+    this.state ={
+      input: "",
+      Nprevious: "",
+      Ncurrent: "",
+      operator: ""
+    };
+   
+  }
+
+  addToInput = val => {
+    this.setState({ input: this.state.input + val });
+  };
+
+  addDecimal = val =>{
+    if(this.state.input.indexOf(".")===-1){
+      this.setState({input: this.state.input + val});
+    }
+  };
+
+  addZeroToInput = val =>{
+    if(this.state.input !== ""){
+      this.setState({input: this.state.input + val});
+    }
+  };
+
+  claerInput = () =>{
+    this.setState({input: ""});
+  };
+
+  sum = () =>{
+    this.state.Nprevious = this.state.input;
+    this.setState({input: ""});
+    this.state.operator = "sum";
+  };
+  resta = () =>{
+    this.state.Nprevious = this.state.input;
+    this.setState({input: ""});
+    this.state.operator="resta";
+  };
+  mult= () =>{
+    this.state.Nprevious =this.state.input;
+    this.setState({input: ""});
+    this.state.operator="mult";
+  };
+  divi = () =>{
+    this.state.Nprevious =this.state.input;
+    this.setState({input: ""});
+    this.state.operator="divi";
+  };
+
+  evaluar =()=>{
+    this.setState.Ncurrent=this.state.input;
+    if(this.state.operator ==="sum"){
+      this.setState({input:parseInt(this.state.Nprevious) + parseInt(this.state.Ncurrent)});
+
+    }else if (this.state.operator ==="resta"){
+      this.setState({input:parseInt(this.state.Nprevious) - parseInt(this.state.Ncurrent)});
+    }else if(this.state.operator ==="mult"){
+      this.setState({input:parseInt(this.state.Nprevious) * parseInt(this.state.Ncurrent)});
+    }else if(this.state.operator ==="divi"){
+      this.setState({input:parseInt(this.state.Nprevious) / parseInt(this.state.Ncurrent)});
+    }
+
+  };
+
+  render(){
+    return(
+    <div className="app">
+      <div className="calc-wrapper">
+        <div className="row">
+          <Input input={this.state.input}></Input>
+        </div>
+        <div className="row">
+        <Button handleClick={this.addToInput}>7</Button>
+        <Button handleClick={this.addToInput}>8</Button>
+        <Button handleClick={this.addToInput}>9</Button>
+        <Button handleClick={this.divi}>/</Button>
+        </div>
+        <div className="row">
+        <Button handleClick={this.addToInput}>4</Button>
+        <Button handleClick={this.addToInput}>5</Button>
+        <Button handleClick={this.addToInput}>6</Button>
+        <Button handleClick={this.mult}>*</Button>
+        </div>
+        <div className="row">
+        <Button handleClick={this.addToInput}>1</Button>
+        <Button handleClick={this.addToInput}>2</Button>
+        <Button handleClick={this.addToInput}>3</Button>
+        <Button handleClick={this.sum}>+</Button>
+        </div>
+        <div className="row">
+        <Button handleClick={this.addDecimal}>.</Button>
+        <Button handleClick={this.addZeroToInput}>0</Button>
+        <Button handleClick={this.evaluar}>=</Button>
+        <Button handleClick={this.resta}>-</Button>
+        </div>
+        <div className="row">
+        <ClearButton handleClear={this.claerInput}>
+          CLEAR
+        </ClearButton>
+        </div>
+      </div>
+    </div>
+  );
+  }
+}
+
+export default App;
+
+
